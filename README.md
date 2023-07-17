@@ -1,4 +1,4 @@
-
+<img width="100%" src="https://github.com/lemonekq/lumashell/blob/main/design/1.png?raw=true">
 <hr>
 
 Fully Maintained by [lemonek](https://github.com/lemonekq) (GFX, BRANDING, CODE, DESIGN).
