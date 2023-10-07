@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Forms;
 
 namespace lumashell
 {
@@ -9,17 +9,22 @@ namespace lumashell
         {
             InitializeComponent();
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Top = 0; this.Left = 0;
-            this.Height = SystemParameters.PrimaryScreenHeight;
-            this.Width = SystemParameters.PrimaryScreenWidth;
+            foreach (Screen DesktopScreen in LocalMemory.Screens)
+            {
+                Desktop WorkingDesktop = new Desktop();
 
-            // process.Kill doesnt kill the tree
-            Process.Start("taskkill", "/F /IM explorer.exe");
+                LocalMemory.DesktopParams_Position[0] = DesktopScreen.WorkingArea.Left;     //   X
+                LocalMemory.DesktopParams_Position[1] = DesktopScreen.WorkingArea.Top;      //   Y
 
-            taskbarhandler.Width = SystemParameters.PrimaryScreenWidth - 80;
+                LocalMemory.DesktopParams_Size[0] = DesktopScreen.Bounds.Height;  //   Height
+                LocalMemory.DesktopParams_Size[1] = DesktopScreen.Bounds.Width;   //   Width
+
+                WorkingDesktop.Show();
+            }
+
+            this.Hide();
         }
     }
 }
